@@ -3,7 +3,8 @@ body{
 }
 
 h2{
-    font-size: 18px;
+    font-size: 1.5em;
+    text-align: center;
     padding: 10px 20px;
     color: #575ed8;
 }
@@ -28,7 +29,9 @@ h2{
     border-bottom: 1px solid #e9e9e9;
     color: #555;
 }
-
+.right{
+    text-align: right;
+}
 #feedback p{
     color: #aaa;
     padding: 14px 0px;

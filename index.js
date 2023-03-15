@@ -8,17 +8,26 @@ let server=app.listen(4000,()=>{
 
 app.use(express.static('public'));
 
-
+let allClients = {};
 const io=socket(server);
 
 io.on('connection',function(socket){
-    console.log("contact light", socket.id);
+    console.log("Contact light\nSocket id =", socket.id);
 
+    socket.on('new-user-entered',function(data){
+        console.log(data+" has joined")
+        socket.broadcast.emit('new-user-entered',data);
+        allClients[socket.id]=data;
+    });
     socket.on('chat',function(data){
-        io.sockets.emit('chat',data);
-        console.log(data);
+        socket.broadcast.emit('chat',data);
     });
     socket.on('typing',function(data){
         socket.broadcast.emit('typing',data);
+    });
+    socket.on('disconnect',()=>{   
+        // console.log(allClients[socket.id]+" has left")      
+        socket.broadcast.emit('left',allClients[socket.id])  
+        delete allClients[socket.id];             
     });
 });
