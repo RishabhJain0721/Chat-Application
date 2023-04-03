@@ -1,7 +1,6 @@
 const socket=io.connect('http://localhost:4000/');
 
 const output=document.querySelector('#output');
-// const handle=document.querySelector('#handle');
 const message=document.querySelector('#message');
 const button=document.querySelector('#send');
 const feedback=document.querySelector('#feedback');
